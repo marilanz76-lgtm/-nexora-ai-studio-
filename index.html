@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexora AI Studio — Transformamos negocios con Inteligencia Artificial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --rose:    #F7CBCA;
+  --gray:    #DDD5D3;
+  --white:   #0D1318;
+  --ice:     #D5E5E5;
+  --sage:    #C0D7D6;
+  --deep:    #8BAFAF;
+  --deepest: #C0D8D8;
+  --ink:     #EEF5F5;
+  --glass-bg:      rgba(18,28,38,0.62);
+  --glass-bg2:     rgba(14,22,30,0.48);
+  --glass-border:  rgba(255,255,255,0.1);
+  --glass-border2: rgba(192,215,214,0.18);
+  --blur:    blur(24px);
+  --blur-lg: blur(52px);
+  --shadow-sm:  0 2px 20px rgba(93,107,107,0.07);
+  --shadow-md:  0 8px 40px rgba(93,107,107,0.13);
+  --shadow-lg:  0 24px 80px rgba(93,107,107,0.18);
+  --glow-rose:  0 0 70px rgba(247,203,202,0.5);
+  --glow-sage:  0 0 70px rgba(192,215,214,0.45);
+  --font-head: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --section-pad: 110px 7%;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --r-pill: 100px;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:var(--font-body);overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0D1318}
+::-webkit-scrollbar-thumb{background:rgba(192,215,214,0.35);border-radius:3px}
+
+/* MESH BG */
+.mesh-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 8% 8%,   rgba(247,203,202,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 92% 15%,  rgba(192,215,214,0.1)  0%,transparent 60%),
+    radial-gradient(ellipse 50% 65% at 50% 92%,  rgba(192,215,214,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 40% at 20% 70%,  rgba(247,203,202,0.07) 0%,transparent 60%),
+    linear-gradient(155deg,#0D1318 0%,#0F1A24 45%,#13101C 100%);
+  animation:meshA 20s ease-in-out infinite alternate;
+}
+@keyframes meshA{0%{opacity:1}100%{opacity:.85}}
+
+/* CURSOR GLOW */
+#cursor-glow{
+  position:fixed;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(247,203,202,0.2) 0%,transparent 70%);
+  pointer-events:none;z-index:1;transform:translate(-50%,-50%);
+  transition:left .9s cubic-bezier(.16,1,.3,1),top .9s cubic-bezier(.16,1,.3,1);
+}
+
+/* ══ NAV ════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 7%;height:72px;
+  background:rgba(13,19,24,0.78);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border-bottom:1px solid var(--glass-border);
+  transition:background .3s;
+}
+.nav-logo{
+  font-family:var(--font-head);font-size:1.3rem;font-weight:700;
+  color:var(--ink);text-decoration:none;letter-spacing:-.5px;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-mark{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--rose),var(--sage));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:800;color:var(--deepest);
+  box-shadow:0 4px 16px rgba(247,203,202,0.5);
+}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--deep);text-decoration:none;transition:color .25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.btn-ghost-nav{
+  padding:9px 20px;background:transparent;
+  border:1px solid var(--glass-border2);border-radius:var(--r-pill);
+  font-size:.84rem;font-weight:500;color:var(--deep);cursor:pointer;
+  transition:all .25s;font-family:var(--font-body);
+}
+.btn-ghost-nav:hover{background:var(--glass-bg2);color:var(--ink)}
+.btn-primary-nav{
+  padding:9px 22px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.22);border-radius:var(--r-pill);
+  font-size:.84rem;font-weight:600;color:var(--ink);cursor:pointer;
+  transition:all .3s;font-family:var(--font-body);
+  box-shadow:0 4px 20px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-primary-nav:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+
+/* Contacto button — purple */
+.nav-contacto-btn{
+  display:inline-block;
+  padding:7px 18px;
+  background:#9333EA;
+  border-radius:var(--r-pill);
+  color:#fff !important;
+  font-weight:600;font-size:.84rem;
+  text-decoration:none;
+  transition:all .25s;
+}
+.nav-contacto-btn:hover{background:#7c22d4;color:#fff !important;}
+
+/* ══ HERO ═══════════════════════════════════════ */
+#hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:50px;
+  padding:140px 7% 100px;
+  overflow:hidden;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px 6px 8px;
+  background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);border-radius:var(--r-pill);
+  font-size:.72rem;font-weight:600;color:var(--deep);
+  letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:28px;width:fit-content;box-shadow:var(--shadow-sm);
+}
+.hero-badge-dot{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),var(--sage));
+  display:flex;align-items:center;justify-content:center;font-size:.62rem;
+}
+h1.hero-h1{
+  font-family:var(--font-head);
+  font-size:clamp(2.5rem,4.2vw,3.8rem);
+  font-weight:700;line-height:1.1;letter-spacing:-1.5px;
+  color:var(--ink);margin-bottom:22px;
+}
+.hero-accent{
+  background:linear-gradient(135deg,var(--deep) 0%,#8FAAAA 55%,var(--rose) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1rem;color:var(--deep);line-height:1.8;max-width:480px;margin-bottom:40px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{
+  padding:15px 32px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.22);border-radius:var(--r-pill);
+  font-size:.95rem;font-weight:600;color:var(--ink);cursor:pointer;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.1);
+  transition:all .3s;font-family:var(--font-head);
+}
+.btn-primary:hover{transform:translateY(-3px);background:rgba(255,255,255,0.16);box-shadow:0 16px 48px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.15)}
+.btn-secondary{
+  padding:15px 32px;background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);border-radius:var(--r-pill);
+  font-size:.95rem;font-weight:600;color:var(--ink);cursor:pointer;
+  box-shadow:var(--shadow-sm);transition:all .3s;font-family:var(--font-head);
+}
+.btn-secondary:hover{background:rgba(192,215,214,0.35);transform:translateY(-2px)}
+.hero-trust{display:flex;align-items:center;gap:16px;margin-top:36px}
+.trust-avatars{display:flex}
+.trust-av{
+  width:32px;height:32px;border-radius:50%;
+  border:2px solid #fff;
+  background:linear-gradient(135deg,var(--rose),var(--sage));
+  margin-left:-8px;font-size:.65rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;color:var(--deepest);
+}
+.trust-av:first-child{margin-left:0}
+.trust-text{font-size:.78rem;color:var(--deep)}
+.trust-text strong{color:var(--ink)}
+
+/* ── HERO VISUAL — sphere ─────────────────── */
+.hero-visual{
+  position:relative;display:flex;justify-content:center;align-items:center;
+}
+.sphere-wrap{
+  position:relative;width:100%;max-width:500px;
+  animation:sphereFloat 7s ease-in-out infinite;
+}
+@keyframes sphereFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-18px) rotate(1.5deg)}
+}
+.sphere-img{
+  width:100%;border-radius:28px;
+  filter:drop-shadow(0 30px 80px rgba(147,51,234,0.45)) drop-shadow(0 0 60px rgba(100,150,255,0.35));
+  display:block;
+  object-fit:cover;
+}
+/* Floating stat glass cards */
+.hero-float{
+  position:absolute;
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:22px;padding:14px 20px;
+  box-shadow:var(--shadow-md);z-index:4;
+  min-width:130px;
+}
+.hf-1{top:4%;right:-20px;animation:fc1 4s ease-in-out infinite}
+.hf-2{bottom:8%;left:-30px;animation:fc2 5.5s ease-in-out infinite}
+.hf-3{top:46%;right:-44px;animation:fc1 6s ease-in-out infinite reverse}
+@keyframes fc1{0%,100%{transform:translateY(0) rotate(-.8deg)}50%{transform:translateY(-14px) rotate(.8deg)}}
+@keyframes fc2{0%,100%{transform:translateY(0) rotate(.8deg)}50%{transform:translateY(-10px) rotate(-.8deg)}}
+.hf-val{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--ink);line-height:1}
+.hf-lbl{font-size:.64rem;color:var(--deep);margin-top:3px}
+.hf-chg{font-size:.62rem;font-weight:600;margin-top:5px}
+.hf-chg.g{color:#4CAF87}.hf-chg.r{color:#E87B7A}
+/* Glow orbs */
+.hero-orb{position:absolute;border-radius:50%;filter:blur(60px);z-index:0;pointer-events:none}
+.orb-a{width:350px;height:350px;background:rgba(247,203,202,0.32);top:-40px;right:-60px}
+.orb-b{width:280px;height:280px;background:rgba(192,215,214,0.28);bottom:40px;right:20px}
+
+/* ══ SECTION BASE ═══════════════════════════════ */
+section{position:relative;z-index:1;padding:var(--section-pad)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;color:var(--deep);
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:20px;height:2px;background:linear-gradient(90deg,var(--rose),var(--sage));border-radius:2px}
+h2.sh2{
+  font-family:var(--font-head);
+  font-size:clamp(1.9rem,3.2vw,2.9rem);
+  font-weight:700;line-height:1.15;letter-spacing:-1px;
+  color:var(--ink);margin-bottom:14px;
+}
+.ssub{font-size:.93rem;color:var(--deep);line-height:1.8;max-width:500px;margin-bottom:52px}
+
+/* ══ PARTNERS ═══════════════════════════════════ */
+#partners{
+  padding:40px 7%;
+  border-top:1px solid rgba(192,215,214,0.28);
+  border-bottom:1px solid rgba(192,215,214,0.28);
+  background:rgba(13,19,24,0.5);
+}
+.p-label{text-align:center;font-size:.72rem;font-weight:700;color:#c4b5fd;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.p-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.p-chip{
+  padding:9px 22px;
+  background:rgba(147,51,234,0.18);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(147,51,234,0.4);
+  border-radius:var(--r-pill);
+  font-size:.82rem;font-weight:700;
+  color:#e9d5ff;
+  box-shadow:0 2px 12px rgba(147,51,234,0.18);
+  transition:all .3s;
+}
+.p-chip:hover{background:rgba(147,51,234,0.38);color:#fff;transform:translateY(-2px);box-shadow:0 6px 22px rgba(147,51,234,0.35);}
+
+/* ══ SERVICES — IMAGE CARDS ═════════════════════ */
+#servicios{}
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+/* 2 wide featured cards on first row */
+.svc-grid .svc-featured{
+  grid-column:span 2;
+}
+.svc-card{
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:all .45s cubic-bezier(.16,1,.3,1);
+  cursor:pointer;
+  display:flex;flex-direction:column;
+}
+.svc-card:hover{
+  transform:translateY(-10px) scale(1.01);
+  box-shadow:var(--shadow-lg),var(--glow-rose);
+  border-color:rgba(247,203,202,0.55);
+}
+.svc-card-img{
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.svc-card-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.svc-card:hover .svc-card-img img{transform:scale(1.08)}
+.svc-img-h{height:200px}
+.svc-img-h-featured{height:260px}
+/* Soft gradient over image */
+.svc-img-fade{
+  position:absolute;bottom:0;left:0;right:0;height:60%;
+  background:linear-gradient(0deg,rgba(13,19,24,0.97) 0%,rgba(13,19,24,0.4) 55%,transparent 100%);
+  pointer-events:none;
+}
+/* Floating tag on image */
+.svc-tag{
+  position:absolute;top:14px;left:14px;
+  padding:4px 13px;
+  background:rgba(13,19,24,0.65);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:var(--r-pill);
+  font-size:.66rem;font-weight:700;color:var(--deep);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.svc-body{padding:22px 24px 26px;flex:1;display:flex;flex-direction:column}
+.svc-name{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:9px}
+.svc-desc{font-size:.82rem;color:var(--deep);line-height:1.75;flex:1}
+.svc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.svc-chip{
+  padding:3px 11px;background:rgba(192,215,214,0.28);
+  border:1px solid var(--glass-border2);border-radius:var(--r-pill);
+  font-size:.67rem;font-weight:600;color:var(--deep);
+}
+
+/* ══ SOLUTIONS ══════════════════════════════════ */
+#soluciones{
+  background:rgba(192,215,214,0.1);
+  border-top:1px solid rgba(192,215,214,0.22);
+  border-bottom:1px solid rgba(192,215,214,0.22);
+}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sol-card{
+  border-radius:var(--r-lg);overflow:hidden;
+  position:relative;cursor:pointer;
+  box-shadow:var(--shadow-md);
+  transition:all .4s;
+  min-height:260px;
+}
+.sol-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:var(--shadow-lg)}
+.sol-card img{
+  width:100%;height:100%;object-fit:cover;
+  position:absolute;inset:0;display:block;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.sol-card:hover img{transform:scale(1.06)}
+.sol-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(13,19,24,0.1) 0%,rgba(13,19,24,0.72) 100%);
+  backdrop-filter:blur(2px);
+}
+.sol-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 22px;
+}
+.sol-num{
+  font-size:.65rem;font-weight:700;color:rgba(255,255,255,0.6);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;
+}
+.sol-name{
+  font-family:var(--font-head);font-size:1.05rem;font-weight:700;
+  color:#fff;margin-bottom:6px;
+}
+.sol-desc{font-size:.78rem;color:rgba(255,255,255,0.75);line-height:1.6}
+.sol-pill{
+  display:inline-flex;margin-top:12px;
+  padding:3px 12px;background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.28);border-radius:var(--r-pill);
+  font-size:.66rem;font-weight:600;color:#fff;
+}
+
+/* ══ DASHBOARDS ═════════════════════════════════ */
+#dashboards{}
+.dash-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.dash-text .ssub{margin-bottom:28px}
+.dash-feat{display:flex;flex-direction:column;gap:13px}
+.dash-feat-item{
+  display:flex;align-items:center;gap:14px;
+  background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);border-radius:16px;
+  padding:15px 18px;box-shadow:var(--shadow-sm);transition:all .3s;
+}
+.dash-feat-item:hover{transform:translateX(6px);border-color:rgba(192,215,214,.5)}
+.dfi-icon{
+  width:40px;height:40px;border-radius:12px;
+  background:rgba(255,255,255,0.08);border:1px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  overflow:hidden;
+}
+.dfi-icon img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.dfi-name{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:2px}
+.dfi-val{font-size:.75rem;color:var(--deep)}
+.dash-vis{position:relative}
+.dash-main{
+  background:var(--glass-bg);backdrop-filter:var(--blur-lg);
+  border:1px solid var(--glass-border);border-radius:var(--r-xl);
+  overflow:hidden;box-shadow:var(--shadow-lg),var(--glow-sage);
+}
+.dash-main-img{width:100%;height:320px;object-fit:cover;display:block}
+.dash-main-glass{
+  margin:0;padding:22px 26px;
+  border-top:1px solid var(--glass-border);
+  background:rgba(13,19,24,0.75);
+}
+.dash-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dash-kpi{
+  background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);
+  border-radius:14px;padding:14px 12px;
+}
+.dkpi-n{font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:3px}
+.dkpi-l{font-size:.66rem;color:var(--deep)}
+.dkpi-c{font-size:.64rem;font-weight:600;margin-top:4px}
+.up{color:#4CAF87}.dn{color:#E87B7A}
+.dash-badge{
+  position:absolute;top:-18px;right:-18px;
+  background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);border-radius:16px;
+  padding:12px 16px;box-shadow:var(--shadow-md);
+  animation:fc2 4s ease-in-out infinite;
+}
+.db-n{font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--ink)}
+.db-l{font-size:.62rem;color:var(--deep)}
+
+/* ══ PROCESO ════════════════════════════════════ */
+#proceso{
+  text-align:center;
+  background:rgba(247,203,202,0.07);
+  border-top:1px solid rgba(247,203,202,0.18);
+  border-bottom:1px solid rgba(247,203,202,0.18);
+}
+.proc-track{
+  display:flex;align-items:flex-start;gap:0;margin-top:56px;position:relative;
+}
+.proc-track::before{
+  content:'';position:absolute;top:27px;
+  left:calc(8% + 27px);right:calc(8% + 27px);height:1px;
+  background:linear-gradient(90deg,transparent,var(--sage),var(--rose),var(--sage),transparent);
+}
+.proc-step{flex:1;padding:0 14px;text-align:center}
+.proc-node{
+  width:54px;height:54px;border-radius:50%;
+  background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1.5px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;font-family:var(--font-head);
+  font-size:.85rem;font-weight:700;color:var(--deep);
+  box-shadow:var(--shadow-sm);position:relative;z-index:1;transition:all .3s;
+}
+.proc-step:hover .proc-node{
+  background:linear-gradient(135deg,rgba(247,203,202,.5),rgba(192,215,214,.5));
+  border-color:rgba(247,203,202,.7);
+  box-shadow:var(--shadow-md),0 0 28px rgba(247,203,202,.4);color:var(--ink);
+}
+.proc-name{font-family:var(--font-head);font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:7px}
+.proc-desc{font-size:.79rem;color:var(--deep);line-height:1.65}
+
+/* ══ PORTFOLIO ══════════════════════════════════ */
+#portfolio{}
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.port-card{
+  border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--shadow-md);cursor:pointer;
+  transition:all .45s cubic-bezier(.16,1,.3,1);
+  position:relative;background:var(--glass-bg);
+  backdrop-filter:var(--blur);border:1px solid var(--glass-border);
+}
+.port-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:var(--shadow-lg)}
+.port-img{
+  width:100%;height:240px;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+  border-bottom:1px solid var(--glass-border);
+}
+.port-card:hover .port-img{transform:scale(1.05)}
+.port-body{padding:24px 26px 28px}
+.port-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.port-tag{
+  padding:3px 12px;background:rgba(192,215,214,0.28);
+  border:1px solid var(--glass-border2);border-radius:var(--r-pill);
+  font-size:.67rem;font-weight:600;color:var(--deep);
+}
+.port-name{font-family:var(--font-head);font-size:1.08rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+.port-desc{font-size:.82rem;color:var(--deep);line-height:1.7}
+.port-result{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:14px;padding:6px 14px;
+  background:rgba(192,215,214,0.22);border:1px solid var(--glass-border2);
+  border-radius:var(--r-pill);font-size:.74rem;font-weight:600;color:var(--deepest);
+}
+
+/* ══ TESTIMONIOS ════════════════════════════════ */
+#testimonios{
+  background:rgba(192,215,214,0.08);
+  border-top:1px solid rgba(192,215,214,0.22);
+  border-bottom:1px solid rgba(192,215,214,0.22);
+}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{
+  background:var(--glass-bg);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-border);border-radius:var(--r-lg);
+  padding:30px 26px;box-shadow:var(--shadow-sm);transition:all .3s;overflow:hidden;
+  position:relative;
+}
+.testi-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--rose),var(--sage));opacity:.6;
+}
+.testi-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(247,203,202,.4)}
+.testi-quote{font-size:2.5rem;line-height:1;color:var(--rose);font-family:Georgia,serif;margin-bottom:12px;opacity:.8}
+.testi-text{font-size:.85rem;color:var(--deep);line-height:1.8;margin-bottom:20px}
+.testi-result{
+  padding:7px 14px;
+  background:rgba(192,215,214,0.22);border:1px solid var(--glass-border2);
+  border-radius:10px;font-size:.74rem;font-weight:600;color:var(--deepest);
+  margin-bottom:20px;display:inline-block;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{
+  width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  background:linear-gradient(135deg,var(--rose),var(--sage));
+}
+.testi-av img{width:100%;height:100%;object-fit:cover}
+.testi-name{font-size:.87rem;font-weight:700;color:var(--ink)}
+.testi-role{font-size:.72rem;color:var(--deep)}
+
+/* ══ CTA ════════════════════════════════════════ */
+#cta{text-align:center;padding:120px 7%;position:relative;overflow:hidden}
+.cta-orb-a{
+  position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(247,203,202,.38) 0%,transparent 70%);
+  top:-100px;left:-100px;filter:blur(40px);pointer-events:none;
+  animation:breathe 8s ease-in-out infinite;
+}
+.cta-orb-b{
+  position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,215,214,.32) 0%,transparent 70%);
+  bottom:-80px;right:-80px;filter:blur(40px);pointer-events:none;
+  animation:breathe 10s ease-in-out infinite reverse;
+}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.cta-box{
+  position:relative;z-index:2;
+  background:var(--glass-bg);backdrop-filter:var(--blur-lg);
+  border:1px solid var(--glass-border);border-radius:var(--r-xl);
+  padding:76px 64px;max-width:800px;margin:0 auto;
+  box-shadow:var(--shadow-lg),var(--glow-rose);overflow:hidden;
+}
+.cta-box::before{
+  content:'';position:absolute;top:-1px;left:12%;right:12%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--rose),var(--sage),transparent);
+}
+.cta-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 16px 5px 8px;
+  background:rgba(247,203,202,.28);
+  border:1px solid rgba(247,203,202,.45);
+  border-radius:var(--r-pill);
+  font-size:.72rem;font-weight:600;color:var(--deepest);
+  letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;
+}
+.cta-pulse{
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),var(--sage));
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.25)}}
+.cta-h2{
+  font-family:var(--font-head);
+  font-size:clamp(2rem,3.5vw,3.1rem);
+  font-weight:700;letter-spacing:-1px;color:var(--ink);margin-bottom:16px;line-height:1.15;
+}
+.cta-p{font-size:.96rem;color:var(--deep);margin-bottom:38px;line-height:1.7}
+.cta-row{display:flex;gap:10px;max-width:460px;margin:0 auto 14px}
+.cta-input{
+  flex:1;padding:13px 20px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--glass-border);border-radius:var(--r-pill);
+  font-size:.9rem;color:var(--ink);outline:none;font-family:var(--font-body);
+  transition:border-color .3s;
+}
+.cta-input:focus{border-color:rgba(192,215,214,.8)}
+.cta-input::placeholder{color:var(--deep)}
+.cta-note{font-size:.72rem;color:var(--deep)}
+
+/* ══ FOOTER ═════════════════════════════════════ */
+footer{
+  position:relative;z-index:1;
+  background:rgba(10,16,22,0.88);backdrop-filter:var(--blur);
+  border-top:1px solid var(--glass-border);padding:56px 7% 28px;
+}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
+.ft-brand-name{
+  font-family:var(--font-head);font-size:1.22rem;font-weight:700;
+  color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.ft-brand-desc{font-size:.81rem;color:var(--deep);line-height:1.75;max-width:255px;margin-bottom:20px}
+.soc-row{display:flex;gap:8px}
+.soc-btn{
+  width:34px;height:34px;background:var(--glass-bg);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:var(--deep);text-decoration:none;transition:all .25s;
+}
+.soc-btn:hover{background:rgba(247,203,202,.38);border-color:rgba(247,203,202,.55);color:var(--ink)}
+.ft-col h4{font-family:var(--font-head);font-size:.81rem;font-weight:700;color:var(--ink);margin-bottom:15px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-col a{font-size:.79rem;color:var(--deep);text-decoration:none;transition:color .2s}
+.ft-col a:hover{color:var(--ink)}
+.ft-bottom{
+  border-top:1px solid rgba(192,215,214,.28);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.75rem;color:var(--deep);
+}
+.ft-bottom a{color:var(--deep);text-decoration:none}
+.ft-bottom a:hover{color:var(--ink)}
+
+/* ══ REVEAL ═════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .75s ease,transform .75s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+
+/* ══ RESPONSIVE ═════════════════════════════════ */
+@media(max-width:800px){
+  #hero{grid-template-columns:1fr;padding:120px 6% 80px}
+  .hero-visual{display:none}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid .svc-featured{grid-column:span 1}
+  .sol-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-inner{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .proc-track::before{display:none}
+}
+@media(max-width:680px){
+  :root{--section-pad:80px 5%}
+  .nav-links,.btn-ghost-nav{display:none}
+  h1.hero-h1{font-size:2.2rem}
+  .svc-grid,.sol-grid,.testi-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .proc-track{flex-direction:column;align-items:center;gap:30px}
+  .cta-box{padding:44px 24px}
+  .cta-row{flex-direction:column}
+  .dash-kpi-row{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="mesh-bg"></div>
+<div id="cursor-glow"></div>
+
+<!-- ══ NAV ══════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;mix-blend-mode:screen;">
+      <img src="nexora-logo.png" alt="" style="width:160%;height:160%;object-fit:cover;object-position:50% 28%;margin-left:-30%;margin-top:-10%;display:block;"/>
+    </div>
+    <div style="display:flex;flex-direction:column;line-height:1.2;">
+      <span style="font-size:.95rem;font-weight:800;letter-spacing:.5px;color:#fff;">NEXORA <span style="color:#c084fc;">AI</span></span>
+      <span style="font-size:.55rem;font-weight:600;letter-spacing:3px;color:#a78bfa;text-transform:uppercase;">Studio</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#soluciones">Soluciones</a></li>
+    <li><a href="#dashboards">Dashboards</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#cta" class="nav-contacto-btn">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-ghost-nav">Ver portfolio</button>
+    <button class="btn-primary-nav">Agendar Consultoría</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-orb orb-a"></div>
+  <div class="hero-orb orb-b"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <div class="hero-badge-dot">✦</div>
+      AI Studio de próxima generación
+    </div>
+    <h1 class="hero-h1 reveal">
+      Transformamos<br/>
+      negocios con<br/>
+      <span class="hero-accent">Inteligencia Artificial</span>
+    </h1>
+    <p class="hero-sub reveal">
+      Creamos automatizaciones, dashboards y experiencias digitales inteligentes que optimizan y escalan empresas modernas.
+    </p>
+    <div class="hero-btns reveal">
+      <button class="btn-primary">Agendar Consultoría →</button>
+      <button class="btn-secondary">Ver Soluciones</button>
+    </div>
+    <div class="hero-trust reveal">
+      <div class="trust-avatars">
+        <div class="trust-av">MG</div>
+        <div class="trust-av" style="background:linear-gradient(135deg,var(--ice),var(--sage))">RV</div>
+        <div class="trust-av" style="background:linear-gradient(135deg,var(--gray),var(--ice))">PA</div>
+        <div class="trust-av">+</div>
+      </div>
+      <div class="trust-text"><strong>+150 empresas</strong> ya transformaron su negocio</div>
+    </div>
+  </div>
+
+  <!-- ── SPHERE HERO VISUAL ────────────────── -->
+  <div class="hero-visual">
+    <!-- Floating glass stat cards -->
+    <div class="hero-float hf-1">
+      <div class="hf-val">98.4%</div>
+      <div class="hf-lbl">Precisión IA</div>
+      <div class="hf-chg g">↑ Optimizado</div>
+    </div>
+    <div class="hero-float hf-2">
+      <div class="hf-val">3.2×</div>
+      <div class="hf-lbl">Productividad</div>
+      <div class="hf-chg g">↑ Promedio</div>
+    </div>
+    <div class="hero-float hf-3">
+      <div class="hf-val">−47%</div>
+      <div class="hf-lbl">Costos operativos</div>
+      <div class="hf-chg r">↓ Reducción</div>
+    </div>
+
+    <div class="sphere-wrap">
+      <img
+        class="sphere-img"
+        src="foto1-ai-hero.png"
+        alt="AI Intelligence"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNERS ══════════════════════════════════ -->
+<div id="partners">
+  <div class="p-label">Tecnologías con las que trabajamos</div>
+  <div class="p-row">
+    <div class="p-chip">OpenAI</div>
+    <div class="p-chip">Microsoft Azure</div>
+    <div class="p-chip">Anthropic Claude</div>
+    <div class="p-chip">Google Cloud AI</div>
+    <div class="p-chip">LangChain</div>
+    <div class="p-chip">n8n</div>
+    <div class="p-chip">Make</div>
+    <div class="p-chip">Power BI</div>
+    <div class="p-chip">Zapier</div>
+  </div>
+</div>
+
+<!-- ══ SERVICIOS ══════════════════════════════════ -->
+<section id="servicios">
+  <div class="eyebrow reveal">Lo que construimos</div>
+  <h2 class="sh2 reveal">Servicios diseñados para<br/><span class="hero-accent">el negocio inteligente</span></h2>
+  <p class="ssub reveal">Cada solución es diseñada a medida, orientada a resultados medibles y lista para escalar.</p>
+
+  <div class="svc-grid">
+
+    <!-- FEATURED: Automatización IA -->
+    <div class="svc-card svc-featured reveal">
+      <div class="svc-card-img">
+        <img class="svc-img-h-featured"
+          src="foto2-rpa.png"
+          alt="AI Automation"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">IA</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Automatización con Inteligencia Artificial</div>
+        <p class="svc-desc">Eliminamos tareas repetitivas con agentes inteligentes entrenados para tu negocio. Flujos autónomos que trabajan 24/7 sin errores y se mejoran solos.</p>
+        <div class="svc-chips"><span class="svc-chip">LangChain</span><span class="svc-chip">n8n</span><span class="svc-chip">GPT-4o</span><span class="svc-chip">Claude</span></div>
+      </div>
+    </div>
+
+    <!-- FEATURED: Dashboards -->
+    <div class="svc-card svc-featured reveal" style="transition-delay:.08s">
+      <div class="svc-card-img">
+        <img class="svc-img-h-featured"
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=90&fit=crop"
+          alt="Interactive Dashboards"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Analytics</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Dashboards Interactivos</div>
+        <p class="svc-desc">Visualizaciones en tiempo real que convierten datos complejos en decisiones claras. Desde KPIs ejecutivos hasta análisis operativos granulares.</p>
+        <div class="svc-chips"><span class="svc-chip">Power BI</span><span class="svc-chip">Tableau</span><span class="svc-chip">Databricks</span></div>
+      </div>
+    </div>
+
+    <!-- App Development -->
+    <div class="svc-card reveal" style="transition-delay:.16s">
+      <div class="svc-card-img">
+        <img class="svc-img-h"
+          src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=88&fit=crop"
+          alt="App Development"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Apps</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Desarrollo de Apps</div>
+        <p class="svc-desc">Aplicaciones funcionales y escalables con experiencias de usuario premium y lógica inteligente integrada.</p>
+        <div class="svc-chips"><span class="svc-chip">React</span><span class="svc-chip">Flutter</span><span class="svc-chip">Next.js</span></div>
+      </div>
+    </div>
+
+    <!-- Landing Pages -->
+    <div class="svc-card reveal" style="transition-delay:.24s">
+      <div class="svc-card-img">
+        <img class="svc-img-h"
+          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=88&fit=crop"
+          alt="Landing Pages"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Conversión</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Landing Pages</div>
+        <p class="svc-desc">Páginas de alta conversión que transforman visitantes en clientes. Copy inteligente, diseño premium y A/B testing automatizado.</p>
+        <div class="svc-chips"><span class="svc-chip">Framer</span><span class="svc-chip">Webflow</span><span class="svc-chip">SEO</span></div>
+      </div>
+    </div>
+
+    <!-- API Integrations -->
+    <div class="svc-card reveal" style="transition-delay:.40s">
+      <div class="svc-card-img">
+        <img class="svc-img-h"
+          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=88&fit=crop"
+          alt="API Integrations"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Integraciones</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Integraciones API</div>
+        <p class="svc-desc">Conectamos todos tus sistemas en un ecosistema digital unificado. CRM, ERP, plataformas de pago y más de 200 integraciones disponibles.</p>
+        <div class="svc-chips"><span class="svc-chip">REST</span><span class="svc-chip">GraphQL</span><span class="svc-chip">Webhooks</span></div>
+      </div>
+    </div>
+
+    <!-- Agentes IA -->
+    <div class="svc-card reveal" style="transition-delay:.48s">
+      <div class="svc-card-img">
+        <img class="svc-img-h"
+          src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=600&q=88&fit=crop"
+          alt="AI Agents"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Agentes IA</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Agentes IA</div>
+        <p class="svc-desc">Asistentes inteligentes que aprenden, razonan y ejecutan tareas complejas de forma autónoma. El equipo que nunca duerme.</p>
+        <div class="svc-chips"><span class="svc-chip">AutoGen</span><span class="svc-chip">CrewAI</span><span class="svc-chip">RAG</span></div>
+      </div>
+    </div>
+
+    <!-- Consultoría -->
+    <div class="svc-card reveal" style="transition-delay:.56s">
+      <div class="svc-card-img">
+        <img class="svc-img-h"
+          src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=88&fit=crop"
+          alt="Tech Consulting"/>
+        <div class="svc-img-fade"></div>
+        <span class="svc-tag">Consultoría</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-name">Consultoría Tecnológica</div>
+        <p class="svc-desc">Estrategia digital y roadmap IA personalizado. Analizamos tu empresa y diseñamos el plan de transformación con ROI medible.</p>
+        <div class="svc-chips"><span class="svc-chip">Diagnóstico</span><span class="svc-chip">Roadmap</span><span class="svc-chip">ROI</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SOLUCIONES ═════════════════════════════════ -->
+<section id="soluciones">
+  <div class="eyebrow reveal">Escenarios reales</div>
+  <h2 class="sh2 reveal">Soluciones para cada<br/><span class="hero-accent">desafío empresarial</span></h2>
+  <p class="ssub reveal">Aplicamos IA donde más impacto genera para tu organización.</p>
+
+  <div class="sol-grid">
+
+    <div class="sol-card reveal">
+      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&q=100&fit=crop" alt="Ventas"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">01 · Ventas</div>
+        <div class="sol-name">Automatización de ventas</div>
+        <p class="sol-desc">Pipeline inteligente con scoring de leads y cierre asistido por IA.</p>
+        <span class="sol-pill">CRM + IA →</span>
+      </div>
+    </div>
+
+    <div class="sol-card reveal" style="transition-delay:.09s">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=100&fit=crop" alt="Clientes"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">02 · Clientes</div>
+        <div class="sol-name">Gestión de clientes</div>
+        <p class="sol-desc">360° del cliente con IA predictiva: churn, LTV y oportunidades.</p>
+        <span class="sol-pill">Customer Success →</span>
+      </div>
+    </div>
+
+    <div class="sol-card reveal" style="transition-delay:.18s">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=100&fit=crop" alt="Reportes"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">03 · Analytics</div>
+        <div class="sol-name">Reportes inteligentes</div>
+        <p class="sol-desc">Generación automática de reportes ejecutivos con insights en lenguaje natural.</p>
+        <span class="sol-pill">BI + GPT →</span>
+      </div>
+    </div>
+
+    <div class="sol-card reveal" style="transition-delay:.27s">
+      <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=900&q=100&fit=crop" alt="Operaciones"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">04 · Operaciones</div>
+        <div class="sol-name">Seguimiento operativo</div>
+        <p class="sol-desc">Monitoreo en tiempo real de KPIs críticos con alertas inteligentes.</p>
+        <span class="sol-pill">Ops Automation →</span>
+      </div>
+    </div>
+
+    <div class="sol-card reveal" style="transition-delay:.36s">
+      <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=900&q=100&fit=crop" alt="Integraciones"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">05 · Integraciones</div>
+        <div class="sol-name">Plataformas conectadas</div>
+        <p class="sol-desc">Ecosistema unificado: ERP, CRM, marketing y finanzas en sintonía.</p>
+        <span class="sol-pill">API + Webhooks →</span>
+      </div>
+    </div>
+
+    <div class="sol-card reveal" style="transition-delay:.45s">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=100&fit=crop" alt="Admin"/>
+      <div class="sol-overlay"></div>
+      <div class="sol-content">
+        <div class="sol-num">06 · Admin</div>
+        <div class="sol-name">Automatización administrativa</div>
+        <p class="sol-desc">Contratos, facturación, documentos y compliance generados automáticamente.</p>
+        <span class="sol-pill">Document AI →</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ DASHBOARDS ══════════════════════════════════ -->
+<section id="dashboards">
+  <div class="dash-inner">
+    <div class="dash-text">
+      <div class="eyebrow reveal-l">Plataforma</div>
+      <h2 class="sh2 reveal-l">Software premium de<br/><span class="hero-accent">próxima generación</span></h2>
+      <p class="ssub reveal-l">Interfaces inteligentes que transforman datos en claridad visual absoluta.</p>
+      <div class="dash-feat">
+        <div class="dash-feat-item reveal-l">
+          <div class="dfi-icon">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=80&q=80&fit=crop" alt="realtime"/>
+          </div>
+          <div><div class="dfi-name">Tiempo real absoluto</div><div class="dfi-val">Datos actualizados cada 30 segundos automáticamente</div></div>
+        </div>
+        <div class="dash-feat-item reveal-l" style="transition-delay:.1s">
+          <div class="dfi-icon">
+            <img src="https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=80&q=80&fit=crop" alt="custom"/>
+          </div>
+          <div><div class="dfi-name">UI completamente personalizable</div><div class="dfi-val">Adaptado a la identidad y necesidades de tu marca</div></div>
+        </div>
+        <div class="dash-feat-item reveal-l" style="transition-delay:.2s">
+          <div class="dfi-icon">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=80&q=80&fit=crop" alt="connected"/>
+          </div>
+          <div><div class="dfi-name">Conectado a todas tus fuentes</div><div class="dfi-val">CRM, ERP, spreadsheets, APIs y +200 integraciones</div></div>
+        </div>
+        <div class="dash-feat-item reveal-l" style="transition-delay:.3s">
+          <div class="dfi-icon">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=80&q=80&fit=crop" alt="ai"/>
+          </div>
+          <div><div class="dfi-name">Insights generados por IA</div><div class="dfi-val">Recomendaciones automáticas y alertas predictivas</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-vis reveal-r">
+      <div class="dash-badge">
+        <div class="db-n">99.8%</div>
+        <div class="db-l">Uptime garantizado</div>
+      </div>
+      <div class="dash-main">
+        <img class="dash-main-img"
+          src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&q=90&fit=crop"
+          alt="Dashboard Analytics"/>
+        <div class="dash-main-glass">
+          <div class="dash-kpi-row">
+            <div class="dash-kpi">
+              <div class="dkpi-n">$12.8M</div>
+              <div class="dkpi-l">Revenue anual</div>
+              <div class="dkpi-c up">↑ +34.7%</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dkpi-n">4,821</div>
+              <div class="dkpi-l">Clientes activos</div>
+              <div class="dkpi-c up">↑ +18.3%</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dkpi-n">89.3%</div>
+              <div class="dkpi-l">Retención anual</div>
+              <div class="dkpi-c up">↑ Estable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESO ═════════════════════════════════════ -->
+<section id="proceso">
+  <div class="eyebrow reveal" style="justify-content:center">Metodología</div>
+  <h2 class="sh2 reveal" style="text-align:center">Nuestro proceso<br/><span class="hero-accent">paso a paso</span></h2>
+  <p class="ssub reveal" style="margin:0 auto;text-align:center">Ágil, transparente y orientado al resultado desde el día uno.</p>
+  <div class="proc-track">
+    <div class="proc-step reveal"><div class="proc-node">01</div><div class="proc-name">Descubrimiento</div><p class="proc-desc">Entendemos tu negocio, procesos y objetivos de transformación digital.</p></div>
+    <div class="proc-step reveal" style="transition-delay:.1s"><div class="proc-node">02</div><div class="proc-name">Estrategia</div><p class="proc-desc">Diseñamos el roadmap IA con prioridades claras y ROI definido.</p></div>
+    <div class="proc-step reveal" style="transition-delay:.2s"><div class="proc-node">03</div><div class="proc-name">Diseño</div><p class="proc-desc">Prototipamos interfaces premium y validamos con usuarios reales.</p></div>
+    <div class="proc-step reveal" style="transition-delay:.3s"><div class="proc-node">04</div><div class="proc-name">Automatización</div><p class="proc-desc">Construimos flujos, agentes y lógica IA con las mejores herramientas.</p></div>
+    <div class="proc-step reveal" style="transition-delay:.4s"><div class="proc-node">05</div><div class="proc-name">Implementación</div><p class="proc-desc">Lanzamos, integramos con tus sistemas y capacitamos a tu equipo.</p></div>
+    <div class="proc-step reveal" style="transition-delay:.5s"><div class="proc-node">06</div><div class="proc-name">Escalamiento</div><p class="proc-desc">Monitoreamos, optimizamos y escalamos conforme crece tu negocio.</p></div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO ═══════════════════════════════════ -->
+<section id="portfolio">
+  <div class="eyebrow reveal">Casos reales</div>
+  <h2 class="sh2 reveal">Proyectos que<br/><span class="hero-accent">hablan por sí solos</span></h2>
+  <p class="ssub reveal">Resultados tangibles para empresas que apostaron por la inteligencia artificial.</p>
+
+  <div class="port-grid">
+
+    <div class="port-card reveal">
+      <img class="port-img"
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=90&fit=crop"
+        alt="Dashboard Retail"/>
+      <div class="port-body">
+        <div class="port-tags"><span class="port-tag">Dashboard BI</span><span class="port-tag">Power BI + AI</span><span class="port-tag">Retail</span></div>
+        <div class="port-name">Centro de Comando Retail</div>
+        <p class="port-desc">Dashboard ejecutivo para cadena de 87 tiendas. Redujo tiempo de reporte de 3 días a 15 minutos y aumentó el margen operacional en 23%.</p>
+        <div class="port-result">📈 +23% margen operacional</div>
+      </div>
+    </div>
+
+    <div class="port-card reveal" style="transition-delay:.12s">
+      <img class="port-img"
+        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=90&fit=crop"
+        alt="AI Sales Agent"/>
+      <div class="port-body">
+        <div class="port-tags"><span class="port-tag">Agente IA</span><span class="port-tag">CRM</span><span class="port-tag">SaaS</span></div>
+        <div class="port-name">Agente de Ventas Autónomo</div>
+        <p class="port-desc">Agente IA que califica leads, envía propuestas y hace follow-up automático. Incrementó el cierre de ventas en 41% sin contratar personal adicional.</p>
+        <div class="port-result">🤖 +41% cierre de ventas</div>
+      </div>
+    </div>
+
+    <div class="port-card reveal" style="transition-delay:.24s">
+      <img class="port-img"
+        src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=90&fit=crop"
+        alt="Financial Automation"/>
+      <div class="port-body">
+        <div class="port-tags"><span class="port-tag">Automatización</span><span class="port-tag">n8n</span><span class="port-tag">Fintech</span></div>
+        <div class="port-name">Plataforma de Ops Financieras</div>
+        <p class="port-desc">Sistema automatizado de conciliación y reportes financieros. Eliminó 320 horas mensuales de trabajo manual y redujo errores en 99.2%.</p>
+        <div class="port-result">⚡ 320h/mes recuperadas</div>
+      </div>
+    </div>
+
+    <div class="port-card reveal" style="transition-delay:.36s">
+      <img class="port-img"
+        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=90&fit=crop"
+        alt="Landing Page"/>
+      <div class="port-body">
+        <div class="port-tags"><span class="port-tag">Landing Page</span><span class="port-tag">Conversion AI</span><span class="port-tag">E-Commerce</span></div>
+        <div class="port-name">Landing de Alta Conversión</div>
+        <p class="port-desc">Página con copy inteligente, A/B testing automatizado y personalización por audiencia. Aumentó la tasa de conversión de 2.1% a 8.7%.</p>
+        <div class="port-result">🎯 Conversión 2.1% → 8.7%</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TESTIMONIOS ════════════════════════════════ -->
+<section id="testimonios">
+  <div class="eyebrow reveal">Clientes</div>
+  <h2 class="sh2 reveal">Resultados que<br/><span class="hero-accent">transforman empresas</span></h2>
+  <p class="ssub reveal">Historias reales de negocios que apostaron por la inteligencia artificial.</p>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Nexora AI Studio transformó nuestra operación. El agente de ventas trabaja 24/7 y hoy cerramos más negocios con el mismo equipo. Resultados desde el primer mes.</p>
+      <div class="testi-result">📈 +41% en cierre de ventas</div>
+      <div class="testi-author">
+        <div class="testi-av">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&q=80&fit=crop&crop=face" alt="MG"/>
+        </div>
+        <div><div class="testi-name">Marcela González</div><div class="testi-role">CEO · Grupo Pacífico</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.1s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">El dashboard que construyeron cambió la forma en que tomamos decisiones. Pasamos de intuición a datos en tiempo real. Absolutamente revolucionario para nuestro retail.</p>
+      <div class="testi-result">⚡ 320h/mes ahorradas</div>
+      <div class="testi-author">
+        <div class="testi-av">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80&fit=crop&crop=face" alt="RV"/>
+        </div>
+        <div><div class="testi-name">Rodrigo Valdés</div><div class="testi-role">Director IT · RetailChile</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.2s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">La automatización financiera eliminó errores y liberó a mi equipo para trabajo estratégico. El ROI fue visible y medible desde los primeros 60 días de implementación.</p>
+      <div class="testi-result">🎯 ROI en menos de 60 días</div>
+      <div class="testi-author">
+        <div class="testi-av">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80&fit=crop&crop=face" alt="PA"/>
+        </div>
+        <div><div class="testi-name">Paula Arriagada</div><div class="testi-role">CFO · LogisticaPro</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-orb-a"></div>
+  <div class="cta-orb-b"></div>
+  <div class="cta-box reveal">
+    <div class="cta-eyebrow"><div class="cta-pulse"></div>Consultoría gratuita disponible</div>
+    <h2 class="cta-h2">Construyamos el futuro<br/>de tu negocio <span class="hero-accent">con IA</span></h2>
+    <p class="cta-p">Agenda una sesión estratégica sin costo. Analizamos tu empresa y te presentamos un plan de transformación digital concreto y medible.</p>
+    <div class="cta-row">
+      <input class="cta-input" type="email" placeholder="tu@empresa.com"/>
+      <button class="btn-primary">Hablar con Nexora →</button>
+    </div>
+    <div class="cta-note">Sin compromiso · Respuesta en menos de 24h · 100% confidencial</div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════ -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand-name">
+        <div class="nav-logo-mark" style="width:30px;height:30px;font-size:.78rem">N</div>
+        Nexora AI Studio
+      </div>
+      <p class="ft-brand-desc">Transformamos empresas con inteligencia artificial. Automatizaciones, dashboards y soluciones digitales de próxima generación.</p>
+      <div class="soc-row">
+        <a href="#" class="soc-btn">in</a>
+        <a href="#" class="soc-btn">𝕏</a>
+        <a href="#" class="soc-btn">ig</a>
+        <a href="#" class="soc-btn">wa</a>
+      </div>
+    </div>
+    <div class="ft-col"><h4>Servicios</h4><ul>
+      <li><a href="#">Automatización IA</a></li>
+      <li><a href="#">Dashboards</a></li>
+      <li><a href="#">Apps funcionales</a></li>
+      <li><a href="#">Landing Pages</a></li>
+      <li><a href="#">Agentes IA</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Empresa</h4><ul>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Casos de éxito</a></li>
+      <li><a href="#">Blog IA</a></li>
+      <li><a href="#">Trabaja con nosotros</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Contacto</h4><ul>
+      <li><a href="#">hola@nexora.ai</a></li>
+      <li><a href="#">WhatsApp directo</a></li>
+      <li><a href="#">Agendar llamada</a></li>
+      <li><a href="#">Santiago · Chile</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Nexora AI Studio · Todos los derechos reservados</span>
+    <div style="display:flex;gap:18px"><a href="#">Privacidad</a><a href="#">Términos</a></div>
+  </div>
+</footer>
+
+<script>
+/* CURSOR GLOW */
+(function(){
+  const g=document.getElementById('cursor-glow');
+  document.addEventListener('mousemove',e=>{g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
+})();
+
+/* SCROLL REVEAL */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
+})();
+
+/* NAV SCROLL */
+(function(){
+  const nav=document.querySelector('nav');
+  addEventListener('scroll',()=>{
+    nav.style.background=scrollY>40?'rgba(241,247,247,0.94)':'rgba(241,247,247,0.75)';
+  });
+})();
+</script>
+</body>
+</html>
