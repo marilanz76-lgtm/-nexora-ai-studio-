@@ -1168,8 +1168,8 @@ footer{
     <h2 class="cta-h2">Construyamos el futuro<br/>de tu negocio <span class="hero-accent">con IA</span></h2>
     <p class="cta-p">Agenda una sesión estratégica sin costo. Analizamos tu empresa y te presentamos un plan de transformación digital concreto y medible.</p>
     <div class="cta-row">
-      <input class="cta-input" type="email" placeholder="tu@empresa.com"/>
-      <button class="btn-primary">Hablar con Nexora →</button>
+      <input class="cta-input" type="text" placeholder="Tu nombre o empresa"/>
+      <button class="btn-primary">💬 Hablar por WhatsApp →</button>
     </div>
     <div class="cta-note">Sin compromiso · Respuesta en menos de 24h · 100% confidencial</div>
   </div>
@@ -1261,9 +1261,9 @@ footer{
   const ctaInput = document.querySelector('.cta-input');
   if(ctaBtn && ctaInput){
     ctaBtn.addEventListener('click',()=>{
-      const email = ctaInput.value.trim();
-      const msg = email
-        ? 'Hola Nexora, me interesa una consultoría. Mi correo: ' + email
+      const nombre = ctaInput.value.trim();
+      const msg = nombre
+        ? 'Hola Nexora, soy ' + nombre + ' y me interesa agendar una consultoría.'
         : 'Hola Nexora, me interesa agendar una consultoría.';
       window.open('https://wa.me/56941142290?text=' + encodeURIComponent(msg), '_blank');
     });
