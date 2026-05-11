@@ -193,7 +193,7 @@ h1.hero-h1{
 }
 .sphere-wrap{
   position:relative;width:100%;max-width:500px;
-  animation:sphereFloat 7s ease-in-out infinite;
+  animation:none;
 }
 @keyframes sphereFloat{
   0%,100%{transform:translateY(0) rotate(0deg)}
@@ -215,9 +215,9 @@ h1.hero-h1{
   box-shadow:var(--shadow-md);z-index:4;
   min-width:130px;
 }
-.hf-1{top:4%;right:-20px;animation:fc1 4s ease-in-out infinite}
-.hf-2{bottom:8%;left:-30px;animation:fc2 5.5s ease-in-out infinite}
-.hf-3{top:46%;right:-44px;animation:fc1 6s ease-in-out infinite reverse}
+.hf-1{top:8%;right:6%;animation:none}
+.hf-2{bottom:8%;left:50%;transform:translateX(-50%);animation:none}
+.hf-3{bottom:32%;right:6%;animation:none}
 @keyframes fc1{0%,100%{transform:translateY(0) rotate(-.8deg)}50%{transform:translateY(-14px) rotate(.8deg)}}
 @keyframes fc2{0%,100%{transform:translateY(0) rotate(.8deg)}50%{transform:translateY(-10px) rotate(-.8deg)}}
 .hf-val{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--ink);line-height:1}
