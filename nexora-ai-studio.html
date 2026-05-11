@@ -1193,7 +1193,7 @@ footer{
         <a href="#" class="soc-btn">in</a>
         <a href="#" class="soc-btn">𝕏</a>
         <a href="#" class="soc-btn">ig</a>
-        <a href="#" class="soc-btn">wa</a>
+        <a href="https://wa.me/56941142290?text=Hola%20Nexora%2C%20me%20interesa%20una%20consultor%C3%ADa" target="_blank" class="soc-btn">wa</a>
       </div>
     </div>
     <div class="ft-col"><h4>Servicios</h4><ul>
@@ -1212,7 +1212,7 @@ footer{
     </ul></div>
     <div class="ft-col"><h4>Contacto</h4><ul>
       <li><a href="#">hola@nexora.ai</a></li>
-      <li><a href="#">WhatsApp directo</a></li>
+      <li><a href="https://wa.me/56941142290?text=Hola%20Nexora%2C%20me%20interesa%20una%20consultor%C3%ADa" target="_blank">WhatsApp directo</a></li>
       <li><a href="#">Agendar llamada</a></li>
       <li><a href="#">Santiago · Chile</a></li>
     </ul></div>
@@ -1256,16 +1256,16 @@ footer{
       btn.addEventListener('click', scrollToCta);
     }
   });
-  /* Habla con Nexora — send email */
+  /* Habla con Nexora — open WhatsApp */
   const ctaBtn = document.querySelector('#cta .btn-primary');
   const ctaInput = document.querySelector('.cta-input');
   if(ctaBtn && ctaInput){
     ctaBtn.addEventListener('click',()=>{
       const email = ctaInput.value.trim();
-      if(!email){ctaInput.focus();ctaInput.style.borderColor='#9333EA';return;}
-      const subject = encodeURIComponent('Solicitud de consultoría — Nexora AI Studio');
-      const body = encodeURIComponent('Hola equipo Nexora,\n\nMe interesa agendar una consultoría.\n\nMi correo de contacto: '+email+'\n\n¡Quedo atento/a!');
-      window.location.href = 'mailto:hola@nexora.ai?subject='+subject+'&body='+body;
+      const msg = email
+        ? 'Hola Nexora, me interesa una consultoría. Mi correo: ' + email
+        : 'Hola Nexora, me interesa agendar una consultoría.';
+      window.open('https://wa.me/56941142290?text=' + encodeURIComponent(msg), '_blank');
     });
   }
 })();
