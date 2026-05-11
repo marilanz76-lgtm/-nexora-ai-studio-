@@ -100,12 +100,13 @@ nav{
 .btn-ghost-nav:hover{background:var(--glass-bg2);color:var(--ink)}
 .btn-primary-nav{
   padding:9px 22px;
-  background:rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.15);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.22);border-radius:var(--r-pill);
-  font-size:.84rem;font-weight:600;color:var(--ink);cursor:pointer;
+  border:1px solid rgba(255,255,255,0.35);border-radius:var(--r-pill);
+  font-size:.84rem;font-weight:700;color:#0D1318;cursor:pointer;
   transition:all .3s;font-family:var(--font-body);
-  box-shadow:0 4px 20px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow:0 4px 20px rgba(0,0,0,0.2);
+  text-shadow:none;
 }
 .btn-primary-nav:hover{transform:translateY(-2px);background:rgba(255,255,255,0.18);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
 
@@ -664,7 +665,7 @@ footer{
 <!-- ══ NAV ══════════════════════════════════════ -->
 <nav>
   <a href="#" class="nav-logo">
-    <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;mix-blend-mode:screen;">
+    <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;">
       <img src="nexora-logo.png" alt="" style="width:160%;height:160%;object-fit:cover;object-position:50% 28%;margin-left:-30%;margin-top:-10%;display:block;"/>
     </div>
     <div style="display:flex;flex-direction:column;line-height:1.2;">
@@ -963,8 +964,8 @@ footer{
   </div>
 </section>
 
-<!-- ══ DASHBOARDS ══════════════════════════════════ -->
-<section id="dashboards">
+<!-- ══ DASHBOARDS - REMOVED ══════════════════════ -->
+<section id="dashboards" style="display:none">
   <div class="dash-inner">
     <div class="dash-text">
       <div class="eyebrow reveal-l">Plataforma</div>
