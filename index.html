@@ -1179,9 +1179,14 @@ footer{
 <footer>
   <div class="ft-grid">
     <div>
-      <div class="ft-brand-name">
-        <div class="nav-logo-mark" style="width:30px;height:30px;font-size:.78rem">N</div>
-        Nexora AI Studio
+      <div class="ft-brand-name" style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;">
+          <img src="nexora-logo.png" style="width:160%;height:160%;object-fit:cover;object-position:50% 28%;margin-left:-30%;margin-top:-10%;display:block;"/>
+        </div>
+        <div style="display:flex;flex-direction:column;line-height:1.2;">
+          <span style="font-size:1rem;font-weight:800;letter-spacing:.5px;color:#fff;">NEXORA <span style="color:#c084fc;">AI</span></span>
+          <span style="font-size:.55rem;font-weight:600;letter-spacing:3px;color:#a78bfa;text-transform:uppercase;">Studio</span>
+        </div>
       </div>
       <p class="ft-brand-desc">Transformamos empresas con inteligencia artificial. Automatizaciones, dashboards y soluciones digitales de próxima generación.</p>
       <div class="soc-row">
@@ -1239,6 +1244,30 @@ footer{
   addEventListener('scroll',()=>{
     nav.style.background=scrollY>40?'rgba(241,247,247,0.94)':'rgba(241,247,247,0.75)';
   });
+})();
+
+/* CTA BUTTONS — scroll to #cta */
+(function(){
+  function scrollToCta(){
+    document.getElementById('cta').scrollIntoView({behavior:'smooth'});
+  }
+  document.querySelectorAll('.btn-primary, .btn-primary-nav, .nav-contacto-btn').forEach(btn=>{
+    if(btn.textContent.includes('Agendar') || btn.textContent.includes('Consultor') || btn.textContent.includes('Contacto')){
+      btn.addEventListener('click', scrollToCta);
+    }
+  });
+  /* Habla con Nexora — send email */
+  const ctaBtn = document.querySelector('#cta .btn-primary');
+  const ctaInput = document.querySelector('.cta-input');
+  if(ctaBtn && ctaInput){
+    ctaBtn.addEventListener('click',()=>{
+      const email = ctaInput.value.trim();
+      if(!email){ctaInput.focus();ctaInput.style.borderColor='#9333EA';return;}
+      const subject = encodeURIComponent('Solicitud de consultoría — Nexora AI Studio');
+      const body = encodeURIComponent('Hola equipo Nexora,\n\nMe interesa agendar una consultoría.\n\nMi correo de contacto: '+email+'\n\n¡Quedo atento/a!');
+      window.location.href = 'mailto:hola@nexora.ai?subject='+subject+'&body='+body;
+    });
+  }
 })();
 </script>
 </body>
