@@ -62,12 +62,13 @@ body{background:var(--white);color:var(--ink);font-family:var(--font-body);overf
 .sparkles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .sparkle{
   position:absolute;border-radius:50%;
+  box-shadow:0 0 6px 2px var(--color);
   animation:sparkle-twinkle var(--d) ease-in-out infinite;
   animation-delay:var(--delay);
 }
 @keyframes sparkle-twinkle{
-  0%,100%{opacity:0;transform:scale(0.5)}
-  50%{opacity:1;transform:scale(1)}
+  0%,100%{opacity:0;transform:scale(0.3)}
+  50%{opacity:0.9;transform:scale(1)}
 }
 
 /* CURSOR GLOW */
@@ -677,21 +678,24 @@ footer{
 
 <div class="mesh-bg"></div>
 <div class="sparkles">
-  <div class="sparkle" style="width:2px;height:2px;background:#e040fb;top:8%;left:12%;--d:3.2s;--delay:0s"></div>
-  <div class="sparkle" style="width:3px;height:3px;background:#00c8ff;top:15%;left:78%;--d:4.1s;--delay:.8s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#fff;top:25%;left:45%;--d:2.8s;--delay:1.2s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#e040fb;top:35%;left:90%;--d:3.7s;--delay:.4s"></div>
-  <div class="sparkle" style="width:3px;height:3px;background:#00c8ff;top:42%;left:22%;--d:4.5s;--delay:2s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#fff;top:50%;left:60%;--d:3.1s;--delay:.6s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#e040fb;top:58%;left:8%;--d:2.9s;--delay:1.8s"></div>
-  <div class="sparkle" style="width:3px;height:3px;background:#c084fc;top:65%;left:35%;--d:4.2s;--delay:.2s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#00c8ff;top:72%;left:82%;--d:3.4s;--delay:1.5s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#fff;top:80%;left:55%;--d:2.6s;--delay:.9s"></div>
-  <div class="sparkle" style="width:3px;height:3px;background:#e040fb;top:88%;left:18%;--d:3.9s;--delay:2.3s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#00c8ff;top:92%;left:70%;--d:4.0s;--delay:1.1s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#fff;top:20%;left:5%;--d:3.3s;--delay:1.7s"></div>
-  <div class="sparkle" style="width:2px;height:2px;background:#c084fc;top:47%;left:96%;--d:2.7s;--delay:.3s"></div>
-  <div class="sparkle" style="width:3px;height:3px;background:#fff;top:75%;left:3%;--d:4.3s;--delay:2.6s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#e040fb;--color:#e040fb;top:8%;left:12%;--d:3.2s;--delay:0s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#00c8ff;--color:#00c8ff;top:15%;left:78%;--d:4.1s;--delay:.8s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#fff;--color:#fff;top:25%;left:45%;--d:2.8s;--delay:1.2s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#e040fb;--color:#e040fb;top:35%;left:90%;--d:3.7s;--delay:.4s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#00c8ff;--color:#00c8ff;top:42%;left:22%;--d:4.5s;--delay:2s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#fff;--color:#fff;top:50%;left:60%;--d:3.1s;--delay:.6s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#e040fb;--color:#e040fb;top:58%;left:8%;--d:2.9s;--delay:1.8s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#c084fc;--color:#c084fc;top:65%;left:35%;--d:4.2s;--delay:.2s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#00c8ff;--color:#00c8ff;top:72%;left:82%;--d:3.4s;--delay:1.5s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#fff;--color:#fff;top:80%;left:55%;--d:2.6s;--delay:.9s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#e040fb;--color:#e040fb;top:88%;left:18%;--d:3.9s;--delay:2.3s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#00c8ff;--color:#00c8ff;top:92%;left:70%;--d:4.0s;--delay:1.1s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#fff;--color:#fff;top:20%;left:5%;--d:3.3s;--delay:1.7s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#c084fc;--color:#c084fc;top:47%;left:96%;--d:2.7s;--delay:.3s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#fff;--color:#fff;top:75%;left:3%;--d:4.3s;--delay:2.6s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#e040fb;--color:#e040fb;top:30%;left:65%;--d:3.5s;--delay:1.4s"></div>
+  <div class="sparkle" style="width:5px;height:5px;background:#00c8ff;--color:#00c8ff;top:55%;left:50%;--d:2.9s;--delay:.7s"></div>
+  <div class="sparkle" style="width:4px;height:4px;background:#fff;--color:#fff;top:10%;left:55%;--d:3.8s;--delay:2.1s"></div>
 </div>
 <div id="cursor-glow"></div>
 
